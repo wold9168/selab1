@@ -1,0 +1,183 @@
+❯ java -jar ./selab1-src.jar ./Easy\ Test.txt
+
+Directed Graph:
+but -> the(1)
+shared -> the(1)
+a -> detailed(1)
+data -> wrote(1) so(1)
+carefully -> analyzed(1)
+more -> data(1)
+scientist -> carefully(1) analyzed(1)
+wrote -> a(1)
+analyzed -> the(1) it(1)
+it -> again(1)
+team -> but(1) requested(1)
+the -> data(1) scientist(1) report(1) team(2)
+The -> scientist(1)
+with -> the(1)
+requested -> more(1)
+detailed -> report(1)
+and -> shared(1)
+report -> with(1) and(1)
+so -> the(1)
+
+=== Text Graph Analyzer ===
+1. Show Directed Graph
+2. Query Bridge Words
+3. Generate New Text
+4. Calculate Shortest Path
+5. Calculate PageRank
+6. Random Walk
+0. Exit
+Enter choice: 2
+Enter two words (separated by space): so data
+The bridge words from so to data are: the.
+
+=== Text Graph Analyzer ===
+1. Show Directed Graph
+2. Query Bridge Words
+3. Generate New Text
+4. Calculate Shortest Path
+5. Calculate PageRank
+6. Random Walk
+0. Exit
+Enter choice: 3
+Enter text: so data and a the so The team scientist
+New text: so the data and a the data so The team scientist
+
+=== Text Graph Analyzer ===
+1. Show Directed Graph
+2. Query Bridge Words
+3. Generate New Text
+4. Calculate Shortest Path
+5. Calculate PageRank
+6. Random Walk
+0. Exit
+Enter choice: 4
+Enter one or two words: a
+To but:
+  a->detailed->report->with->the->team->but (7.0)
+To shared:
+  a->detailed->report->and->shared (4.0)
+To data:
+  a->detailed->report->with->the->data (5.0)
+To carefully:
+  a->detailed->report->with->the->scientist->carefully (6.0)
+To scientist:
+  a->detailed->report->with->the->scientist (5.0)
+To more:
+  a->detailed->report->with->the->team->requested->more (8.0)
+To wrote:
+  a->detailed->report->with->the->data->wrote (6.0)
+To again:
+  a->detailed->report->with->the->scientist->analyzed->it->again (8.0)
+To analyzed:
+  a->detailed->report->with->the->scientist->analyzed (6.0)
+To team:
+  a->detailed->report->with->the->team (6.0)
+To it:
+  a->detailed->report->with->the->scientist->analyzed->it (7.0)
+To the:
+  a->detailed->report->with->the (4.0)
+To with:
+  a->detailed->report->with (3.0)
+To requested:
+  a->detailed->report->with->the->team->requested (7.0)
+To detailed:
+  a->detailed (1.0)
+To and:
+  a->detailed->report->and (3.0)
+To report:
+  a->detailed->report (2.0)
+To so:
+  a->detailed->report->with->the->data->so (6.0)
+
+
+=== Text Graph Analyzer ===
+1. Show Directed Graph
+2. Query Bridge Words
+3. Generate New Text
+4. Calculate Shortest Path
+5. Calculate PageRank
+6. Random Walk
+0. Exit
+Enter choice: 5
+Enter a word: a
+PageRank of a: 0.0358
+
+=== Text Graph Analyzer ===
+1. Show Directed Graph
+2. Query Bridge Words
+3. Generate New Text
+4. Calculate Shortest Path
+5. Calculate PageRank
+6. Random Walk
+0. Exit
+Enter choice: 6
+Starting random walk... (Press Ctrl+C to stop)
+
+=== 随机游走开始 ===
+当前节点: again
+到达无出边的节点，终止遍历
+=== 随机游走结束 ===
+
+Result: Walk completed
+
+=== Text Graph Analyzer ===
+1. Show Directed Graph
+2. Query Bridge Words
+3. Generate New Text
+4. Calculate Shortest Path
+5. Calculate PageRank
+6. Random Walk
+0. Exit
+Enter choice: 6
+Starting random walk... (Press Ctrl+C to stop)
+
+=== 随机游走开始 ===
+当前节点: wrote
+ -> a
+.....
+ -> detailed
+.....
+ -> report
+.....
+ -> with
+.....
+ -> the
+.....
+ -> team
+.....
+ -> but
+.....
+ -> the
+.....
+ -> scientist
+.....
+ -> analyzed
+.....
+ -> the
+.....
+ -> report
+.....
+ -> and
+.....
+ -> shared
+.....
+ -> the
+.....
+
+发现重复边 the->scientist，终止遍历
+=== 随机游走结束 ===
+
+Result: Walk completed
+
+=== Text Graph Analyzer ===
+1. Show Directed Graph
+2. Query Bridge Words
+3. Generate New Text
+4. Calculate Shortest Path
+5. Calculate PageRank
+6. Random Walk
+0. Exit
+

@@ -27,12 +27,12 @@ public class TextGraph {
         }
 
         boolean containsNode(String word) {
-            return nodes.contains(word.toLowerCase());
+            return nodes.contains(word);
         }
 
         Set<String> getBridgeWords(String w1, String w2) {
-            String lowerW1 = w1.toLowerCase(); // 改用局部变量
-            String lowerW2 = w2.toLowerCase();
+            String lowerW1 = w1; // 改用局部变量
+            String lowerW2 = w2;
             Set<String> bridges = new LinkedHashSet<>();
             if (!containsNode(lowerW1) || !containsNode(lowerW2))
                 return bridges;
@@ -46,8 +46,8 @@ public class TextGraph {
         }
 
         Map<String, List<PathInfo>> shortestPaths(String start, String end) {
-            start = start.toLowerCase();
-            end = end.toLowerCase();
+            start = start;
+            end = end;
             Map<String, List<PathInfo>> paths = new HashMap<>();
             Map<String, Double> minDistances = new HashMap<>();
             nodes.forEach(node -> minDistances.put(node, Double.MAX_VALUE));
@@ -229,7 +229,7 @@ public class TextGraph {
             String prevWord = null;
 
             while ((line = reader.readLine()) != null) {
-                String[] words = nonAlpha.matcher(line).replaceAll(" ").toLowerCase().split("\\s+");
+                String[] words = nonAlpha.matcher(line).replaceAll(" ").split("\\s+");
                 for (String word : words) {
                     if (!word.isEmpty()) {
                         if (prevWord != null) {
@@ -256,8 +256,8 @@ public class TextGraph {
     }
 
     public static String queryBridgeWords(Graph graph, String word1, String word2) {
-        word1 = word1.toLowerCase();
-        word2 = word2.toLowerCase();
+        word1 = word1;
+        word2 = word2;
 
         if (!graph.containsNode(word1))
             return "No " + word1 + " in the graph.";
@@ -280,7 +280,7 @@ public class TextGraph {
 
     public static String generateNewText(Graph graph, String inputText) {
         Pattern nonAlpha = Pattern.compile("[^a-zA-Z]+");
-        String[] words = nonAlpha.matcher(inputText).replaceAll(" ").toLowerCase().split("\\s+");
+        String[] words = nonAlpha.matcher(inputText).replaceAll(" ").split("\\s+");
         List<String> result = new ArrayList<>();
         Random rand = new Random();
 
@@ -297,8 +297,8 @@ public class TextGraph {
     }
 
     public static String calcShortestPath(Graph graph, String word1, String word2) {
-        word1 = word1.toLowerCase();
-        word2 = word2.toLowerCase();
+        word1 = word1;
+        word2 = word2;
 
         if (!graph.containsNode(word1))
             return "No " + word1 + " in the graph.";
@@ -338,7 +338,7 @@ public class TextGraph {
     public static Double calPageRank(Graph graph, String word) {
         if (!graph.pagerankCalculated)
             graph.calculatePageRank();
-        return graph.pageRank.getOrDefault(word.toLowerCase(), -1.0);
+        return graph.pageRank.getOrDefault(word, -1.0);
     }
 
     public static String randomWalk(Graph graph) {
