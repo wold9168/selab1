@@ -3,6 +3,7 @@ package edu.wold9168;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -61,9 +62,8 @@ public class TextGraph {
       Map<String, Integer> neighbors = adjList.getOrDefault(lowerW1, Collections.emptyMap());
       neighbors.keySet()
           .stream()
-          .filter(bridge
-              -> adjList.getOrDefault(bridge, Collections.emptyMap())
-                  .containsKey(lowerW2)) // 使用effectively
+          .filter(bridge -> adjList.getOrDefault(bridge, Collections.emptyMap())
+              .containsKey(lowerW2)) // 使用effectively
           // final变量
           .forEach(bridges::add);
       return bridges;
@@ -74,8 +74,7 @@ public class TextGraph {
       nodes.forEach(node -> minDistances.put(node, Double.MAX_VALUE));
       minDistances.put(start, 0.0);
 
-      PriorityQueue<PathInfo> queue =
-          new PriorityQueue<>(Comparator.comparingDouble(a -> a.totalWeight));
+      PriorityQueue<PathInfo> queue = new PriorityQueue<>(Comparator.comparingDouble(a -> a.totalWeight));
       queue.add(new PathInfo(start, 0.0, new ArrayList<>(List.of(start))));
       Map<String, List<PathInfo>> paths = new HashMap<>();
       while (!queue.isEmpty()) {
@@ -121,11 +120,10 @@ public class TextGraph {
         double diff = 0.0;
         tempRank.clear();
         for (String node : nodes) {
-          double sum =
-              nodes.stream()
-                  .filter(u -> adjList.getOrDefault(u, Collections.emptyMap()).containsKey(node))
-                  .mapToDouble(u -> pageRank.get(u) / adjList.get(u).size())
-                  .sum();
+          double sum = nodes.stream()
+              .filter(u -> adjList.getOrDefault(u, Collections.emptyMap()).containsKey(node))
+              .mapToDouble(u -> pageRank.get(u) / adjList.get(u).size())
+              .sum();
           double newRank = (1 - D) / n + D * sum;
           tempRank.put(node, newRank);
           diff += Math.abs(newRank - pageRank.get(node));
@@ -391,12 +389,11 @@ public class TextGraph {
       Map<String, List<PathInfo>> paths = graph.shortestPaths(start, node);
       if (!paths.isEmpty()) {
         sb.append("To ").append(node).append(":\n");
-        paths.get(node).forEach(p
-            -> sb.append("  ")
-                .append(String.join("->", p.path))
-                .append(" (")
-                .append(p.totalWeight)
-                .append(")\n"));
+        paths.get(node).forEach(p -> sb.append("  ")
+            .append(String.join("->", p.path))
+            .append(" (")
+            .append(p.totalWeight)
+            .append(")\n"));
       }
     });
     return sb.length() > 0 ? sb.toString() : "No paths found";
@@ -465,7 +462,7 @@ public class TextGraph {
     System.out.print("Enter one or two words: ");
     String[] words = scanner.nextLine().trim().split("\\s+", 2);
     String result = words.length == 1 ? calcShortestPath(graph, words[0], "")
-                                      : calcShortestPath(graph, words[0], words[1]);
+        : calcShortestPath(graph, words[0], words[1]);
     System.out.println(result);
   }
 
